@@ -15,23 +15,23 @@ username="alexfan"
 
 
 # Start servers (Dockers locally, azure servers remotely)
-az vm start --resource-group Depfast-test --subscription "Azure Subscription 1" --name "$s1name"
-az vm start --resource-group Depfast-test --subscription "Azure Subscription 1" --name "$s2name"
-az vm start --resource-group Depfast-test --subscription "Azure Subscription 1" --name "$s3name"
+az vm start --resource-group DepFast --subscription "Microsoft Azure Sponsorship 2" --name "$s1name"
+az vm start --resource-group DepFast --subscription "Microsoft Azure Sponsorship 2" --name "$s2name"
+az vm start --resource-group DepFast --subscription "Microsoft Azure Sponsorship 2" --name "$s3name"
 
 # Node cleanups
 ssh -i ~/.ssh/id_rsa $username@"$s1" "sudo apt update && sudo apt install git wget gcc g++ cgroup-tools -y"
-ssh -i ~/.ssh/id_rsa $username@"$s1" "sudo rm -rf ~/Dragonboat-Experiment go1.16.5.linux-amd64.tar.gz"
+ssh -i ~/.ssh/id_rsa $username@"$s1" "sudo rm -rf ~/Dragonboat-Experiment ~/example-data go1.16.5.linux-amd64.tar.gz"
 ssh -i ~/.ssh/id_rsa $username@"$s1" "sudo cgdelete cpu:db cpu:cpulow cpu:cpuhigh blkio:db memory:db ; true"
 ssh -i ~/.ssh/id_rsa $username@"$s1" "sudo /sbin/tc qdisc del dev eth0 root ; true"
 sleep 5
 ssh -i ~/.ssh/id_rsa $username@"$s2" "sudo apt update && sudo apt install git wget gcc g++ cgroup-tools -y"
-ssh -i ~/.ssh/id_rsa $username@"$s2" "sudo rm -rf ~/Dragonboat-Experiment go1.16.5.linux-amd64.tar.gz"
+ssh -i ~/.ssh/id_rsa $username@"$s2" "sudo rm -rf ~/Dragonboat-Experiment ~/example-data go1.16.5.linux-amd64.tar.gz"
 ssh -i ~/.ssh/id_rsa $username@"$s2" "sudo cgdelete cpu:db cpu:cpulow cpu:cpuhigh blkio:db memory:db ; true"
 ssh -i ~/.ssh/id_rsa $username@"$s2" "sudo /sbin/tc qdisc del dev eth0 root ; true"
 sleep 5
 ssh -i ~/.ssh/id_rsa $username@"$s3" "sudo apt update && sudo apt install git wget gcc g++ cgroup-tools -y"
-ssh -i ~/.ssh/id_rsa $username@"$s3" "sudo rm -rf ~/Dragonboat-Experiment go1.16.5.linux-amd64.tar.gz"
+ssh -i ~/.ssh/id_rsa $username@"$s3" "sudo rm -rf ~/Dragonboat-Experiment ~/example-data go1.16.5.linux-amd64.tar.gz"
 ssh -i ~/.ssh/id_rsa $username@"$s3" "sudo cgdelete cpu:db cpu:cpulow cpu:cpuhigh blkio:db memory:db ; true"
 ssh -i ~/.ssh/id_rsa $username@"$s3" "sudo /sbin/tc qdisc del dev eth0 root ; true"
 sleep 5
@@ -52,6 +52,6 @@ sleep 50
 ./run_experiment -write 1000 -read 1000 -leaderAddr "$s1":8001>log.txt
 
 # Stop servers
-az vm deallocate --resource-group Depfast-test --subscription "Azure Subscription 1" --name "$s1name"
-az vm deallocate --resource-group Depfast-test --subscription "Azure Subscription 1" --name "$s2name"
-az vm deallocate --resource-group Depfast-test --subscription "Azure Subscription 1" --name "$s3name"
+az vm deallocate --resource-group DepFast --subscription "Microsoft Azure Sponsorship 2" --name "$s1name"
+az vm deallocate --resource-group DepFast --subscription "Microsoft Azure Sponsorship 2" --name "$s2name"
+az vm deallocate --resource-group DepFast --subscription "Microsoft Azure Sponsorship 2" --name "$s3name"
