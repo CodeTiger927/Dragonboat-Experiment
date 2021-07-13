@@ -12,6 +12,7 @@ s3name="Dragonboat-vm3"
 
 readoperations=500000
 writeoperations=500000
+keyValueSize=16
 
 username="alexfan"
 ###########################
@@ -52,7 +53,7 @@ sleep 50
 
 # Start experiment
 /usr/local/go/bin/go build -o run_experiment run_experiment.go
-./run_experiment -write $readoperations -read $writeoperations -leaderAddr "$s1":8001>log.txt
+./run_experiment -write $readoperations -read $writeoperations -keyValueSize $keyValueSize -leaderAddr "$s1":8001>log.txt
 
 # Stop servers
 az vm deallocate --resource-group DepFast --subscription "Microsoft Azure Sponsorship 2" --name "$s1name"
