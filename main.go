@@ -43,9 +43,6 @@ type RequestType uint64
 
 var (
 	members = map[uint64]string{
-		1: "localhost:61001",
-		2: "localhost:61002",
-		3: "localhost:61003",
 	}
 	httpAddr = []string{
 		":8001",
@@ -62,7 +59,14 @@ func main() {
 	nodeID := flag.Int("nodeid", 1, "NodeID to use")
 	addr := flag.String("addr", "", "Nodehost address")
 	join := flag.Bool("join", false, "Joining a new node")
+	nodeIP1 := flag.String("addr1","","Node 1's address")
+	nodeIP2 := flag.String("addr2","","Node 2's address")
+	nodeIP3 := flag.String("addr3","","Node 3's address")
 	flag.Parse()
+	members[1] = *nodeIP1
+	members[2] = *nodeIP2
+	members[3] = *nodeIP3
+
 	if len(*addr) == 0 && *nodeID != 1 && *nodeID != 2 && *nodeID != 3 {
 		fmt.Fprintf(os.Stderr, "node id must be 1, 2 or 3 when address is not specified\n")
 		os.Exit(1)
